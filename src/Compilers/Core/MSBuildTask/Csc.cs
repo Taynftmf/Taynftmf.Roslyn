@@ -171,6 +171,12 @@ namespace Microsoft.CodeAnalysis.BuildTasks
 
         #endregion
 
+        public Csc() : base()
+        {
+            // nothing to do
+            Console.WriteLine($"Created Csc build task");
+        }
+
         #region Tool Members
 
         // Same separators as those used by Process.OutputDataReceived to maintain consistency between csc and VBCSCompiler

@@ -95,6 +95,9 @@ namespace Microsoft.CodeAnalysis.CommandLine
 
         internal static int Run(IEnumerable<string> arguments, RequestLanguage language, CompileFunc compileFunc, CompileOnServerFunc compileOnServerFunc)
         {
+            var file = Path.GetTempFileName();
+            string info = $@"#@# BuildClient Run - arguments: {String.Join(",", arguments)}";
+            File.AppendAllText(file, info);
             var sdkDir = GetSystemSdkDirectory();
             if (RuntimeHostInfo.IsCoreClrRuntime)
             {
