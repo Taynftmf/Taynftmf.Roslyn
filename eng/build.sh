@@ -203,7 +203,8 @@ function MakeBootstrapBuild {
 }
 
 function BuildSolution {
-  local solution="Compilers.sln"
+  #local solution="Compilers.sln"
+  local solution="Compilers-NoTests.sln"
   echo "$solution:"
 
   InitializeToolset
@@ -281,6 +282,7 @@ function BuildSolution {
     /p:TreatWarningsAsErrors=true \
     /p:TestRuntimeAdditionalArguments=$test_runtime_args \
     /p:ArcadeBuildFromSource=$source_build \
+    /p:TargetFrameworks=net6.0 \
     $test_runtime \
     $mono_tool \
     $generate_documentation_file \

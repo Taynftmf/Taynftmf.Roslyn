@@ -81,4 +81,8 @@
     <InternalsVisibleTo Include="Microsoft.Build.Tasks.CodeAnalysis.UnitTests" />
   </ItemGroup>
   <Import Project="..\CSharpAnalyzerDriver\CSharpAnalyzerDriver.projitems" Label="Shared" />
+  
+  <ItemGroup>
+      <PackageReference Include="Taynftmf.Roslyn.Bridge" Version="0.0.*-*" />
+  </ItemGroup>
 </Project>
