@@ -28,6 +28,8 @@ using Microsoft.CodeAnalysis.Symbols;
 using Microsoft.CodeAnalysis.Text;
 using Roslyn.Utilities;
 using static Microsoft.CodeAnalysis.CSharp.Binder;
+using Taynftmf.Logging;
+using Taynftmf.Roslyn.Bridge;
 
 namespace Microsoft.CodeAnalysis.CSharp
 {
@@ -415,6 +417,19 @@ namespace Microsoft.CodeAnalysis.CSharp
             }
 
             Debug.Assert(compilation._lazyAssemblySymbol is null);
+
+            var logger = new Base.FlushingTempFileLogger("CSharpCompilation");
+
+            logger.Info("Creating CompilationConsumerFactory...");
+            Interface.ICompilationConsumerFactory factory = new Interface.ImplementationFactory();
+            logger.Info("Retrieving consumer from factory...");
+            Interface.ICompilationConsumer consumer = factory.GetCompilationConsumer();
+            logger.Info($"Retrieved consumer {consumer}");
+            
+            logger.Info("invoking consumer...");
+            consumer.ConsumeCompilation(compilation);
+            logger.Info("invoked consumer");
+
             return compilation;
         }
 

@@ -203,7 +203,7 @@ function MakeBootstrapBuild {
 }
 
 function BuildSolution {
-  local solution="Compilers.sln"
+  local solution="Compilers-NoTests.sln"
   echo "$solution:"
 
   InitializeToolset
